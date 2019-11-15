@@ -22,6 +22,7 @@ public class GameInterface extends BorderPane
     private FightingStage fs;
     private Fighter fighter1;
     private Fighter fighter2;
+    private Animation animation;
     
     public GameInterface()
     {
@@ -39,6 +40,11 @@ public class GameInterface extends BorderPane
         fighter1.setX(400);
         fighter1.setY(600);
         fighter2.setX(600);
-        fighter2.setY(600);
+        fighter2.setY(600);      
+    }
+    
+    public Animation getAnimation()
+    {
+        return animation;
     }
 }

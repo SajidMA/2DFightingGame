@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -30,10 +31,14 @@ public class MajorProgram3 extends Application {
             }
         });
         
-        GameInterface root = new GameInterface();
-        
-        
+        GameInterface root = new GameInterface();  
         Scene scene = new Scene(root, 1000, 1000);
+        ControlPanel ctrlpanel = new ControlPanel();
+        HBox hbox = new HBox();
+        hbox.getChildren().add(ctrlpanel.getStart());
+        hbox.getChildren().add(ctrlpanel.getRestart());
+        hbox.getChildren().add(ctrlpanel.getExit());
+        root.setBottom(hbox);
         
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);

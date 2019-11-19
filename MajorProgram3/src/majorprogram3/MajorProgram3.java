@@ -31,7 +31,7 @@ public class MajorProgram3 extends Application {
             }
         });
         
-        GameInterface root = new GameInterface();  
+        GameInterface root = new GameInterface();
         Scene scene = new Scene(root, 1000, 1000);
         ControlPanel ctrlpanel = new ControlPanel();
         HBox hbox = new HBox();
@@ -40,9 +40,10 @@ public class MajorProgram3 extends Application {
         hbox.getChildren().add(ctrlpanel.getExit());
         root.setBottom(hbox);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Fighting Game");
         primaryStage.setScene(scene);
         primaryStage.show();
+        root.getFighter().requestFocus();
     }
 
     /**

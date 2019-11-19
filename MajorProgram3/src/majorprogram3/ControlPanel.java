@@ -39,11 +39,16 @@ public class ControlPanel extends HBox
     private Button start;
     private Button restart;
     private Button exit;
+   
     
     public ControlPanel()
     {
+         
         this.start = new Button("Start Game");
         this.restart = new Button("Restart Game");
         this.exit = new Button("Exit Game");
+        exit.setFocusTraversable(false);
+         start.setFocusTraversable(false);
+         restart.setFocusTraversable(false);
     }
 }

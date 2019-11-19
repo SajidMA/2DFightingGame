@@ -39,7 +39,7 @@ public class Fighter extends Asset
     
     public void Fight()
     {
-        
+        this.setViewport(new Rectangle2D(180, 390, 80.0, 85.0));
     }
     
     public void Move()

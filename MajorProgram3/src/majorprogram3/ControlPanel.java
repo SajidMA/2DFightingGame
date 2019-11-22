@@ -48,7 +48,7 @@ public class ControlPanel extends HBox
         this.restart = new Button("Restart Game");
         this.exit = new Button("Exit Game");
         exit.setFocusTraversable(false);
-         start.setFocusTraversable(false);
-         restart.setFocusTraversable(false);
+        start.setFocusTraversable(false);
+        restart.setFocusTraversable(false);
     }
 }

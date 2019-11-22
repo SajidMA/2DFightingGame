@@ -28,6 +28,8 @@ public class GameInterface extends BorderPane
     private Animation animation;
     private gameInterfaceHandler gih;
     private AT at;
+    private AT2 at2;
+    private FightingMechanics fm;
     
     public GameInterface()
     {
@@ -52,6 +54,10 @@ public class GameInterface extends BorderPane
         fighter1.setOnKeyPressed(gih);
         at = new AT();
         at.start();
+        at2 = new AT2();
+        at2.start();
+        fm = new FightingMechanics();
+        this.setTop(fm);
     }
     
     public Fighter getFighter()
@@ -96,6 +102,35 @@ public class GameInterface extends BorderPane
                fighter1.setViewport(rd);
            }
         }
+    }
+    
+    private class AT2 extends AnimationTimer
+    {
+        long at2 = 0;
         
+        @Override
+        public void handle(long now) 
+        {
+            if (at2 == 0)
+            {
+                at2 = now;
+            }
+            else if ((int)(now - at2)/1e9 > 1)
+           {
+               int var = (int) Math.round(Math.random());
+               if (var <= 0)
+               {
+                   fighter2.setDirection(180);
+                   fighter2.move();
+               }
+               else
+               {
+                   fighter2.setDirection(0);
+                   fighter2.move();
+               }
+               at2 = now;
+           }
+           
+        }
     }
 }

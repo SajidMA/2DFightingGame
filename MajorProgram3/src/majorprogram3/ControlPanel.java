@@ -5,6 +5,8 @@
  */
 package majorprogram3;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
@@ -39,7 +41,6 @@ public class ControlPanel extends HBox
     private Button start;
     private Button restart;
     private Button exit;
-   
     
     public ControlPanel()
     {
@@ -50,5 +51,13 @@ public class ControlPanel extends HBox
         exit.setFocusTraversable(false);
         start.setFocusTraversable(false);
         restart.setFocusTraversable(false);
+        
+        exit.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.exit(0);
+            }
+        });
     }
 }

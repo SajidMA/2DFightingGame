@@ -42,6 +42,11 @@ public class Fighter extends Asset
         this.setViewport(new Rectangle2D(180, 390, 80.0, 85.0));
     }
     
+    public void Fight2()
+    {
+        this.setViewport(new Rectangle2D(200, 390, 70.0, 85.0));
+    }
+    
     public void Move()
     {
         

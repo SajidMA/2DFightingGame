@@ -5,6 +5,7 @@
  */
 package majorprogram3;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -16,6 +17,8 @@ import javafx.scene.shape.Rectangle;
  */
 public class FightingMechanics extends GridPane
 {
+
+    
     private GameInterface gameInterface;
     private FightingStage fightingStage;
     private Rectangle playerHealth;
@@ -24,17 +27,24 @@ public class FightingMechanics extends GridPane
     private int timerValue;
     private Label playerName;
     private Label cpuName;
+    private int cpuHealth2;
+    private int playerHealth2;
     
     public FightingMechanics()
     {
         this.gameInterface = null;
         this.fightingStage = null;
-        this.playerHealth = new Rectangle(100, 50);
-        this.cpuHealth = new Rectangle(100, 50);
+        this.playerHealth = new Rectangle(400, 50);
+        this.cpuHealth = new Rectangle(400, 50);
+        cpuHealth2 = 400;
+        playerHealth2 = 400;
         this.timer = new Label("30");
         this.timerValue = 30;
         this.playerName = new Label("Sajid");
         this.cpuName = new Label("Enemy");
+        this.setPadding(new Insets(5, 10, 5, 10));
+        this.setHgap(10);
+        this.setVgap(5);
         this.add(playerHealth, 1, 0);
         this.add(cpuHealth, 10, 0);
         this.add(timer, 5, 0);
@@ -163,4 +173,54 @@ public class FightingMechanics extends GridPane
         this.cpuName = cpuName;
     }
     
+    /**
+     * @return the cpuHealth2
+     */
+    public int getCpuHealth2() {
+        return cpuHealth2;
+    }
+
+    /**
+     * @param cpuHealth2 the cpuHealth2 to set
+     */
+    public void setCpuHealth2(int cpuHealth2) {
+        this.cpuHealth2 = cpuHealth2;
+        cpuHealth.setWidth(cpuHealth2);
+    }
+
+    /**
+     * @return the playerHealth2
+     */
+    public int getPlayerHealth2() {
+        return playerHealth2;
+    }
+
+    /**
+     * @param playerHealth2 the playerHealth2 to set
+     */
+    public void setPlayerHealth2(int playerHealth2) {
+        this.playerHealth2 = playerHealth2;
+        playerHealth.setWidth(playerHealth2);
+    }
+    
+    public void decreaseTime()
+    {
+        timerValue--;
+        timer.setText("" + timerValue);
+    }
+    
+    public boolean stopTime()
+    {
+        if(timerValue <= 0 || playerHealth.getWidth() <= 0 || cpuHealth.getWidth() <= 0)
+        {
+            timer.setText("GAME OVER");
+            playerHealth.setFocusTraversable(true);
+            cpuHealth.setFocusTraversable(true);
+            timer.setFocusTraversable(true);
+            playerName.setFocusTraversable(true);
+            cpuName.setFocusTraversable(true);
+            return true;
+        }
+        return false;
+    }
 }

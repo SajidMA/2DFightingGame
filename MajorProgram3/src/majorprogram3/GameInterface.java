@@ -15,7 +15,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-
 /**
  *
  * @author sajidahmed
@@ -29,6 +28,7 @@ public class GameInterface extends BorderPane
     private gameInterfaceHandler gih;
     private AT at;
     private AT2 at2;
+    private AT3 at3;
     private FightingMechanics fm;
     
     public GameInterface()
@@ -45,9 +45,9 @@ public class GameInterface extends BorderPane
             Logger.getLogger(GameInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
         fighter1.setX(400);
-        fighter1.setY(600);
+        fighter1.setY(575);
         fighter2.setX(600);
-        fighter2.setY(600);
+        fighter2.setY(575);
         fighter1.setSpeed(10);
         fighter2.setSpeed(10);
         gih = new gameInterfaceHandler();
@@ -56,6 +56,8 @@ public class GameInterface extends BorderPane
         at.start();
         at2 = new AT2();
         at2.start();
+        at3 = new AT3();
+        at3.start();
         fm = new FightingMechanics();
         this.setTop(fm);
     }
@@ -81,6 +83,10 @@ public class GameInterface extends BorderPane
                     break;
                 case SPACE:
                     fighter1.Fight();
+                    if(Detection())
+                    {
+                        fm.setCpuHealth2(fm.getCpuHealth2() - 100);
+                    }
                     break;
             }
         }
@@ -106,6 +112,7 @@ public class GameInterface extends BorderPane
     
     private class AT2 extends AnimationTimer
     {
+        Rectangle2D rd = new Rectangle2D(100.0, 40.0, 50.0, 95.0);
         long at2 = 0;
         
         @Override
@@ -122,15 +129,55 @@ public class GameInterface extends BorderPane
                {
                    fighter2.setDirection(180);
                    fighter2.move();
+                   fighter2.Fight2();
+                   if(Detection2())
+                    {
+                        fm.setPlayerHealth2(fm.getPlayerHealth2() - 100);
+                    }
                }
                else
                {
                    fighter2.setDirection(0);
                    fighter2.move();
+                   fighter2.setViewport(rd);
                }
                at2 = now;
            }
            
         }
+    }
+    
+    private class AT3 extends AnimationTimer
+    {
+        long at3 = 0;
+            
+        @Override
+        public void handle(long now) 
+        {
+            if (at3 == 0)
+            {
+                at3 = now;
+            }
+            else if(at3 + 1000000000 < now)
+            {
+                fm.decreaseTime();
+                fm.stopTime();
+                at3 = now;
+                if(fm.stopTime())
+                {
+                    at2.stop();
+                }
+            }
+        }
+    }
+    
+    public boolean Detection()
+    {
+        return fighter1.intersects(fighter2.getBoundsInLocal());
+    }
+    
+    public boolean Detection2()
+    {
+        return fighter2.intersects(fighter1.getBoundsInLocal());
     }
 }

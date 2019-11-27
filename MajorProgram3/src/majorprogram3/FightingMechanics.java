@@ -209,7 +209,7 @@ public class FightingMechanics extends GridPane
         timer.setText("" + timerValue);
     }
     
-    public boolean stopTime()
+    public boolean gameOver()
     {
         if(timerValue <= 0 || playerHealth.getWidth() <= 0 || cpuHealth.getWidth() <= 0)
         {

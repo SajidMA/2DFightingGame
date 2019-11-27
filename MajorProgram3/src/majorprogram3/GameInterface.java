@@ -15,6 +15,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 /**
  *
  * @author sajidahmed
@@ -30,8 +31,9 @@ public class GameInterface extends BorderPane
     private AT2 at2;
     private AT3 at3;
     private FightingMechanics fm;
+    private ControlPanel cp;
     
-    public GameInterface()
+    public GameInterface(Stage primarystage)
     {
         Rectangle2D viewRectangle2D = new Rectangle2D(100.0, 40.0, 50.0, 95.0);
         fs = new FightingStage(this);
@@ -60,6 +62,7 @@ public class GameInterface extends BorderPane
         at3.start();
         fm = new FightingMechanics();
         this.setTop(fm);
+        cp = new ControlPanel();
     }
     
     public Fighter getFighter()
@@ -161,10 +164,11 @@ public class GameInterface extends BorderPane
             else if(at3 + 1000000000 < now)
             {
                 fm.decreaseTime();
-                fm.stopTime();
+                fm.gameOver();
                 at3 = now;
-                if(fm.stopTime())
+                if(fm.gameOver())
                 {
+                    at.stop();
                     at2.stop();
                 }
             }

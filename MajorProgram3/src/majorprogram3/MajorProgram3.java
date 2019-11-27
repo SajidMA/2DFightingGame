@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -31,7 +32,8 @@ public class MajorProgram3 extends Application {
             }
         });
         
-        GameInterface root = new GameInterface();
+        
+        BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 1000, 1000);
         ControlPanel ctrlpanel = new ControlPanel();
         HBox hbox = new HBox();
@@ -43,9 +45,9 @@ public class MajorProgram3 extends Application {
         primaryStage.setTitle("Fighting Game");
         primaryStage.setScene(scene);
         primaryStage.show();
-        root.getFighter().requestFocus();
+        
     }
-
+    
     /**
      * @param args the command line arguments
      */
